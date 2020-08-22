@@ -14,3 +14,13 @@ server.listen(port, function()
 {
     console.log("Server started on port "+port);
 });
+
+io.on('connection', function(socket)
+{
+    console.log('Someone connected,  ID: ' + socket.id);
+    socket.on('message', function(data)
+    {
+        console.log(data);
+    });
+    socket.emit('messageFromServer', 'You are connected');
+});
